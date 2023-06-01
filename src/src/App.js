@@ -5,25 +5,29 @@ import QuoteCard from './components/quote-card';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [quote, setQuote] = useState('')
+  const [quote, setQuote] = useState({})
 
-  useEffect(() => {
-    fetch('https://api.api-ninjas.com/v1/quotes?category=age', {
+  const handleFetch = () => {
+    fetch('https://api.api-ninjas.com/v1/quotes', {
       headers: {
         'X-API-KEY': 'YhxsD+0FhZwTKTa0xnnveA==6JkvDf7Ys6nYUj3K'
       }
     })
     .then(response => response.json())
-    .then(quote => {
-      setQuote(quote)
-      console.log(quote)
+    .then(array => {
+      setQuote(array[0])
     })
+  }
+
+  useEffect(() => {
+    handleFetch()
   }, [])
 
 
   return (
     <div className="App">
-     <QuoteCard />
+      <QuoteCard quote={quote}/>
+      <button onClick={handleFetch}>Click for another quoet</button>
     </div>
   );
 }
