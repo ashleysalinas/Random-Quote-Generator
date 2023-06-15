@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import QuoteCard from './components/quote-card';
 
@@ -19,16 +18,15 @@ function App() {
       setQuote(array[0])
     })
   }
-
+  
   useEffect(() => {
     handleFetch()
   }, [])
 
-
   return (
     <div className="App">
       <QuoteCard quote={quote}/>
-      <button onClick={handleFetch}>Click for another quoet</button>
+      <button id='new-quote' onClick={handleFetch}>Click for another quote</button>
     </div>
   );
 }
